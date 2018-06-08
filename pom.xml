@@ -28,7 +28,7 @@
   <build>
   <pluginManagement>
    <plugins>
-<plugin>
+		<plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
                     <version>2.4</version>
@@ -43,10 +43,9 @@
                     <artifactId>maven-source-plugin</artifactId>
                     <version>2.1.2</version>
                 </plugin>
-            </plugins>
-        </pluginManagement>
-  <plugins>
-     <plugin>
+          
+  
+     		<plugin>
                 <groupId>org.jfrog.buildinfo</groupId>
                 <artifactId>artifactory-maven-plugin</artifactId>
                 <version>2.6.1</version>
@@ -70,8 +69,8 @@
                                 <contextUrl>http://localhost:8081/artifactory</contextUrl>
                                 <username>admin</username>
                                 <password>password</password>
-                                <repoKey>jenkins-release</repoKey>
-                                <snapshotRepoKey>jenkins-snapshot</snapshotRepoKey>
+                                <repoKey>Jenkins-integration</repoKey>
+                                <snapshotRepoKey>Jenkins-snapshot</snapshotRepoKey>
                             </publisher>
                            <buildInfo>
                                 <buildName>plugin-demo</buildName>
@@ -80,7 +79,7 @@
                             </buildInfo>
                             <licenses>
                                 <autoDiscover>true</autoDiscover>
-                                <includePublishedArtifacts>false</includePublishedArtifacts>
+                              <includePublishedArtifacts>false</includePublishedArtifacts>
                                 <runChecks>true</runChecks>
                                 <scopes>compile,runtime</scopes>
                                 <violationRecipients>build@organisation.com</violationRecipients>
@@ -108,6 +107,7 @@
                 </configuration>
             </plugin>
         </plugins>
+   </pluginManagement>
     </build>
     <repositories>
         <repository>
@@ -115,18 +115,24 @@
                 <enabled>false</enabled>
             </snapshots>
             <id>central</id>
-            <name>bintray</name>
-            <url>http://jcenter.bintray.com</url>
+            <name>Jenkins-integration</name>
+            <url>http://localhost:8081/artifactory/Jenkins-integration</url>
         </repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>central</id>
-            <name>bintray-plugins</name>
-            <url>http://jcenter.bintray.com</url>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <id>central</id>
+          <name>plugins-release</name>
+          <url>http://localhost:8081/artifactory/plugins-release</url>
         </pluginRepository>
-    </pluginRepositories>
+        <pluginRepository>
+          <snapshots />
+          <id>snapshots</id>
+          <name>plugins-snapshot</name>
+          <url>http://localhost:8081/artifactory/plugins-snapshot</url>
+        </pluginRepository>
+      </pluginRepositories>
 </project>
